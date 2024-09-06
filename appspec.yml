@@ -15,7 +15,7 @@ permissions:
 
 hooks:
   BeforeInstall:  # 설치 전에 기존 파일 삭제
-    - location: /home/ubuntu/app/scripts/cleanup.sh
+    - location: /home/ubuntu/app/scripts/cleanup.sh  # 경로 확인
       timeout: 60
       runas: ubuntu
 
