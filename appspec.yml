@@ -14,11 +14,12 @@ permissions:
     mode: 755
 
 hooks:
-  AfterInstall:  # 파일 복사가 완료된 후 cleanup.sh 및 stop.sh 실행
+  BeforeInstall:  # 기존 파일 삭제를 위한 스크립트 추가
     - location: /home/ubuntu/app/scripts/cleanup.sh
       timeout: 60
       runas: ubuntu
 
+  AfterInstall:  # 애플리케이션 종료를 위한 stop.sh 실행
     - location: /home/ubuntu/app/scripts/stop.sh
       timeout: 60
       runas: ubuntu
