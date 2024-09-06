@@ -30,9 +30,4 @@ public class testController {
     public String test5() {
         return "and 5";
     }
-
-    @GetMapping("/test6")
-    public String test6() {
-        return "and 6";
-    }
 }
