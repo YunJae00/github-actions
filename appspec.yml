@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 
 files:
-  - source: scripts/
-    destination: /home/ubuntu/app/scripts
+  - source: scripts/   # GitHub의 scripts/ 디렉토리에서 가져옵니다.
+    destination: /home/ubuntu/app/scripts   # EC2의 이 경로에 복사됩니다.
     overwrite: yes
 
 permissions:
@@ -14,16 +14,17 @@ permissions:
     mode: 755
 
 hooks:
-  BeforeInstall:  # 설치 전에 기존 파일 삭제
-    - location: /home/ubuntu/app/scripts/cleanup.sh  # 경로 확인
+  BeforeInstall:  # 설치 전에 cleanup.sh 실행
+    - location: /home/ubuntu/app/scripts/cleanup.sh
       timeout: 60
       runas: ubuntu
 
-  AfterInstall:
+  AfterInstall:  # stop.sh 스크립트 실행
     - location: /home/ubuntu/app/scripts/stop.sh
       timeout: 60
       runas: ubuntu
-  ApplicationStart:
+
+  ApplicationStart:  # start.sh 스크립트 실행
     - location: /home/ubuntu/app/scripts/start.sh
       timeout: 60
       runas: ubuntu
