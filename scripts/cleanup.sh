@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 삭제할 파일 경로
+# 삭제할 파일 경로 설정
 TARGET_DIR="/home/ubuntu/app/scripts"
 
 # 기존 파일 삭제
