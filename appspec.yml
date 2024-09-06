@@ -6,15 +6,19 @@ files:
     destination: /home/ubuntu/app/scripts
     overwrite: yes
 
-# 파일 권한 설정
 permissions:
   - object: /home/ubuntu/app/scripts
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-    mode: 755  # 실행 권한을 부여하는 권한 설정 (755: 읽기, 쓰기, 실행)
+    mode: 755
 
 hooks:
+  BeforeInstall:  # 설치 전에 기존 파일 삭제
+    - location: /home/ubuntu/app/scripts/cleanup.sh
+      timeout: 60
+      runas: ubuntu
+
   AfterInstall:
     - location: /home/ubuntu/app/scripts/stop.sh
       timeout: 60
