@@ -2,22 +2,24 @@ version: 0.0
 os: linux
 
 files:
-  - source:  /
-    destination: /home/ubuntu/app
+  - source: scripts/
+    destination: /home/ubuntu/app/scripts
     overwrite: yes
 
 permissions:
-  - object: /
+  - object: /home/ubuntu/app/scripts
     pattern: "**"
     owner: ubuntu
     group: ubuntu
+    mode: 755
 
 hooks:
-  AfterInstall:
-    - location: scripts/stop.sh
+  AfterInstall:  # 애플리케이션 종료를 위한 stop.sh 실행
+    - location: /home/ubuntu/app/scripts/stop.sh
       timeout: 60
       runas: ubuntu
-  ApplicationStart:
-    - location: scripts/start.sh
+
+  ApplicationStart:  # 애플리케이션 시작을 위한 start.sh 실행
+    - location: /home/ubuntu/app/scripts/start.sh
       timeout: 60
       runas: ubuntu
